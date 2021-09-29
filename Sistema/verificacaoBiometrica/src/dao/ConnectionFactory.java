@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
     
-    private static final String URL = "jdbc:sqlite:C:\\Users\\Lucas\\Documents\\Estudos\\APS\\APS - Biometria\\Projeto\\verificacaoBiometrica\\Sistema\\verificacaoBiometrica\\db\\verificacaoBiometrica.db";
+    private static final String URL = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\db\\verificacaoBiometrica.db";
     
     public static Connection getConnection(){
       try{
