@@ -19,7 +19,8 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     
     private static final String URL = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\db\\verificacaoBiometrica.db";
-    
+
+    //Erro neste metódo
     public static Connection getConnection(){
       try{
           return DriverManager.getConnection(URL);
@@ -54,4 +55,5 @@ public class ConnectionFactory {
             throw new RuntimeException("Erro de fechamento de conexao");
         }
     }
+
 }
