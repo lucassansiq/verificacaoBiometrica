@@ -158,7 +158,7 @@ public class Login extends javax.swing.JFrame {
         String senha = tfSenha.getText();
         
         if(senha.equals("admin")){
-            Cadastro cadastro = new Cadastro(user);
+            Menu cadastro = new Menu(user);
             cadastro.setVisible(true);
             
             dispose();
