@@ -16,8 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Usuario {
     
-    private String nome, usuario,senha;
-    private int nivel,id;
+    private String nome, usuario,senha = null;
+    private int nivel,id = 0;
     
     public int setId(int id){
         return this.id;
@@ -73,6 +73,8 @@ public class Usuario {
         setSenha(senha);
         setNivel(nivel);
     }
+    
+    public Usuario(){}
 
     @Override
     public String toString() {

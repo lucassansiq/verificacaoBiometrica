@@ -13,7 +13,8 @@ public interface Persistencia<T> {
     
     public int create (T obj);
     public T findByCodigo(int id);
-    public void delete(int id);
+    public T findByUsuario(String user);
+    public void delete(String user);
     public void update(T obj);
     public java.util.List<T> read();
     

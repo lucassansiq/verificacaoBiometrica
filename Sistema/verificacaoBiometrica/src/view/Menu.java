@@ -52,6 +52,7 @@ public class Menu extends javax.swing.JFrame {
         tfSenha = new javax.swing.JPasswordField();
         lbNivel = new javax.swing.JLabel();
         cbNivel = new javax.swing.JComboBox<>();
+        btBuscar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
@@ -119,6 +120,13 @@ public class Menu extends javax.swing.JFrame {
 
         cbNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Nível", "Nível 1", "Nível 2", "Nível 3" }));
 
+        btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -132,10 +140,11 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(lbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNivel)
-                    .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar))
                 .addGap(141, 141, 141))
         );
         jPanel3Layout.setVerticalGroup(
@@ -152,12 +161,14 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar))
+                .addGap(19, 19, 19)
                 .addComponent(lbSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         btSalvar.setBackground(new java.awt.Color(153, 204, 255));
@@ -286,19 +297,22 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        // TODO add your handling code here:
+        excluirUsuario();
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        // TODO add your handling code here:
+        alterarUsuario();
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
-        // TODO add your handling code here:
+        limpaCampo();
     }//GEN-LAST:event_btListarActionPerformed
 
     private void btListar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListar1ActionPerformed
-        // TODO add your handling code here:
+       
+        telaConsulta tela = new telaConsulta();
+        tela.setVisible(true);
+        
     }//GEN-LAST:event_btListar1ActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
@@ -308,6 +322,10 @@ public class Menu extends javax.swing.JFrame {
             gravaUsuario();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        consultaUsuario();
+    }//GEN-LAST:event_btBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,8 +380,9 @@ public class Menu extends javax.swing.JFrame {
         String senha = tfSenha.getText();
         int nivel = cbNivel.getSelectedIndex();
         
+        Usuario user = new Usuario(nome,usuario,senha,nivel);
         
-        System.out.println(new Usuario(nome,usuario,senha,nivel));
+        System.out.println(user);
         
         limpaCampo();
         
@@ -377,9 +396,37 @@ public class Menu extends javax.swing.JFrame {
         cbNivel.setSelectedIndex(0);
         
     }
+    
+    private void consultaUsuario(){
+        
+        Usuario usuario = new Usuario();
+        usuario = dao.UsuarioDAO.getInstance().findByUsuario(tfUsuario.getText());
+        tfNome.setText(usuario.getNome());
+        tfSenha.setText(usuario.getSenha());
+        cbNivel.setSelectedIndex(usuario.getNivel());
+    
+    }
+    
+    private void alterarUsuario(){
+        String nome = tfNome.getText();
+        String user = tfUsuario.getText();
+        String senha = tfSenha.getText();
+        int nivel = cbNivel.getSelectedIndex();
+        
+        Usuario usuario = new Usuario(nome,user,senha,nivel);
+        dao.UsuarioDAO.getInstance().update(usuario);
+        
+        limpaCampo();
+    }
+    
+    private void excluirUsuario(){
+        dao.UsuarioDAO.getInstance().delete(tfUsuario.getText());
+        limpaCampo();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
+    private javax.swing.JButton btBuscar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btListar;
     private javax.swing.JButton btListar1;
