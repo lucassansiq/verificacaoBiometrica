@@ -316,6 +316,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btListar1ActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        
+        //Verificacao se selecionou um nivel, caso não aparece mensagem de erro
         if(cbNivel.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(null,"Selecione um nível");
         }else{
@@ -363,26 +365,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-    
-//    private void gravaCliente(){    
-//            String nome = tfCliNome.getText();
-//            String cpf = tfCliCPF.getText();
-//            String fone = tfCliFone.getText();
-//            String celular = tfCliCelular.getText();
-//            String email = tfCliEmail.getText();
-//            System.out.println(new Cliente(nome,cpf,fone,celular,email));
-//            limpaCliente();              
-//    }
-    
+       
     private void gravaUsuario(){
         String nome = tfNome.getText();
         String usuario = tfUsuario.getText();
         String senha = tfSenha.getText();
         int nivel = cbNivel.getSelectedIndex();
         
-        Usuario user = new Usuario(nome,usuario,senha,nivel);
-        
-        System.out.println(user);
+        System.out.println(new Usuario(nome,usuario,senha,nivel));
         
         limpaCampo();
         

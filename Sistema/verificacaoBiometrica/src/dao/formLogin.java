@@ -20,6 +20,7 @@ public class formLogin {
     
     private int Acesso;
     
+    //Metodo para retornar um boolean se existe o registro no banco
     public boolean consultar(String login, String senha) {
         boolean autenticado = false;
         String sql;
@@ -51,6 +52,8 @@ public class formLogin {
         return autenticado;
     }
     
+    // Metodo busca o registro e retorna apenas o nome do usuario para a tela de Menu
+    //Fazer o mesmo para retornar o nivel do registro do usuario
     public String nomeUsuario(String login, String senha){
         String nome = null;
         String sql;

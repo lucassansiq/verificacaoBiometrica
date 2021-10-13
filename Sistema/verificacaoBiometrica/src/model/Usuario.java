@@ -73,6 +73,7 @@ public class Usuario {
         setUsuario(usuario);
         setSenha(senha);
         setNivel(nivel);
+        gravar();
     }
     
     public Usuario(){}

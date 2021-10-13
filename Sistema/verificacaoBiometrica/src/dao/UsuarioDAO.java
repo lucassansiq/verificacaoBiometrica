@@ -34,7 +34,6 @@ public class UsuarioDAO implements dao.Persistencia<Usuario> {
     }
     
     
-    //VERIFICAR POIS NAO ESTÁ GRAVANDO
     @Override
     public int create(Usuario c) {
         int id = 0;
@@ -92,7 +91,7 @@ public class UsuarioDAO implements dao.Persistencia<Usuario> {
     }
     
     
-    
+    //Me'todo para fazer busca pelo usuario , passando o usuario como parametro
     @Override
     public Usuario findByUsuario(String user) {
         Connection con = ConnectionFactory.getConnection();
@@ -120,6 +119,7 @@ public class UsuarioDAO implements dao.Persistencia<Usuario> {
         return c;
     }
     
+    //O mesmo para o delete, fiz passando pelo usuario
     @Override
     public void delete(String user) {
         Connection con = ConnectionFactory.getConnection();

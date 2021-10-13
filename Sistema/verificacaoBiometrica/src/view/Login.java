@@ -158,7 +158,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-
+        //Cria um objeto da classe formLogin, e usa o metodo consultar
+        //Faz a verificacao se consta no banco
+        
         formLogin novo = new formLogin();
         String valor = new String(tfSenha.getPassword());
         String usuario = new String(tfUsuario.getText());
