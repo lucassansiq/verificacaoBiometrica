@@ -5,6 +5,10 @@
  */
 package view;
 
+import dao.formLogin;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -154,17 +158,18 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        String user = tfUsuario.getText();
-        String senha = tfSenha.getText();
-        
-        if(senha.equals("admin")){
-            Menu cadastro = new Menu(user);
-            cadastro.setVisible(true);
-            
-            dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Tente Novamente");
+
+        formLogin novo = new formLogin();
+        String valor = new String(tfSenha.getPassword());
+        String usuario = new String(tfUsuario.getText());
+        boolean resposta = novo.consultar(usuario, valor);
+        if (resposta == true) {
+            String nome = novo.nomeUsuario(usuario, valor);
+            new Menu(nome).setVisible(true);
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Acesso Confirmado");
+        } else {
+            JOptionPane.showMessageDialog(this, "Acesso Negado");
         }
         
     }//GEN-LAST:event_btLogarActionPerformed

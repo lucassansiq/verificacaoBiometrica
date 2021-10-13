@@ -64,6 +64,7 @@ public class Usuario {
         setUsuario(usuario);
         setSenha(senha);
         setNivel(nivel);
+        gravar();
     }
     
     public Usuario(int id,String nome, String usuario, String senha, int nivel) {
