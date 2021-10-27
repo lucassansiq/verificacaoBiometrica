@@ -5,7 +5,11 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.InformacoesFiscais;
 import model.Produtora;
 import model.Usuario;
 
@@ -54,6 +58,8 @@ public class Menu extends javax.swing.JFrame {
         tfNomeEmpresaN2 = new javax.swing.JTextField();
         btVerificarN2 = new javax.swing.JButton();
         pnFiscal = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tpFiscais = new javax.swing.JTextPane();
         pnNivel3 = new javax.swing.JPanel();
         pnAgrotoxicos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -183,15 +189,17 @@ public class Menu extends javax.swing.JFrame {
 
         pnFiscal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jScrollPane2.setViewportView(tpFiscais);
+
         javax.swing.GroupLayout pnFiscalLayout = new javax.swing.GroupLayout(pnFiscal);
         pnFiscal.setLayout(pnFiscalLayout);
         pnFiscalLayout.setHorizontalGroup(
             pnFiscalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 514, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
         );
         pnFiscalLayout.setVerticalGroup(
             pnFiscalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnInformacoesFiscaisLayout = new javax.swing.GroupLayout(pnInformacoesFiscais);
@@ -529,7 +537,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_tfNomeEmpresaN1ActionPerformed
 
     private void btVerificarN2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN2ActionPerformed
-        // TODO add your handling code here:
+            consultaInformacoesFiscais();
     }//GEN-LAST:event_btVerificarN2ActionPerformed
 
     private void btVerificarN3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN3ActionPerformed
@@ -627,9 +635,16 @@ public class Menu extends javax.swing.JFrame {
     
     private void consultaProdutora(){
         Produtora produtora = new Produtora();
-        produtora = dao.ProdutoraDAO.getInstance().findByCodigo(Integer.parseInt(tfNomeEmpresaN1.getText()));
+        produtora = dao.ProdutoraDAO.getInstance().findByUsuario(tfNomeEmpresaN1.getText());
         tpProducoesAgricolas.setText(produtora.toString());
         tfNomeEmpresaN1.setText("");
+    }
+    
+    private void consultaInformacoesFiscais() {
+        InformacoesFiscais fiscais = new InformacoesFiscais(); 
+        fiscais = dao.InformacoesFiscaisDAO.getInstance().findByUsuario(tfNomeEmpresaN2.getText());
+        tpFiscais.setText(fiscais.toString());
+        tfNomeEmpresaN2.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -647,6 +662,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbBemvindo;
     private javax.swing.JLabel lbNivel;
@@ -671,6 +687,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField tfNomeEmpresaN3;
     private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUsuario;
+    private javax.swing.JTextPane tpFiscais;
     private javax.swing.JTextPane tpProducoesAgricolas;
     // End of variables declaration//GEN-END:variables
 }

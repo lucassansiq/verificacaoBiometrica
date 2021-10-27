@@ -35,6 +35,14 @@ public class Agrotoxicos extends InformacoesFiscais{
     public Agrotoxicos(String agrotoxicos) {
         setAgrotoxicos(agrotoxicos);
     }
+
+    @Override
+    public String toString() {
+        return "Agrotóxicos:" + "\n" +
+                getAgrotoxicos();
+    }
+    
+    
     
     
 

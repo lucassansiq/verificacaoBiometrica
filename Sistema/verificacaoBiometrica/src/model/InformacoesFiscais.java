@@ -15,6 +15,8 @@ public class InformacoesFiscais extends Produtora{
     private String incentivosFiscais,impostosMunicipais,impostosEstaduais,impostosFederais,taxasFederais;
     private int cdProdutora;
 
+    
+
     public String getIncentivosFiscais() {
         return incentivosFiscais;
     }
@@ -56,10 +58,25 @@ public class InformacoesFiscais extends Produtora{
     }
 
     public int getCdProdutora() {
-        return new Produtora().getCodigo();
+        return cdProdutora;
     }
 
+    public void setCdProdutora(int cdProdutora) {
+        this.cdProdutora = cdProdutora;
+    }
+
+
     public InformacoesFiscais(String incentivosFiscais, String impostosMunicipais, String impostosEstaduais, String impostosFederais, String taxasFederais) {
+        setIncentivosFiscais(incentivosFiscais);
+        setImpostosMunicipais(impostosMunicipais);
+        setImpostosEstaduais(impostosEstaduais);
+        setImpostosFederais(impostosFederais);
+        setTaxasFederais(taxasFederais);
+        
+    }
+    
+    public InformacoesFiscais(int CdProdutora,String incentivosFiscais, String impostosMunicipais, String impostosEstaduais, String impostosFederais, String taxasFederais) {
+        setCdProdutora(CdProdutora);
         setIncentivosFiscais(incentivosFiscais);
         setImpostosMunicipais(impostosMunicipais);
         setImpostosEstaduais(impostosEstaduais);
@@ -79,12 +96,17 @@ public class InformacoesFiscais extends Produtora{
     
     public InformacoesFiscais(){}
     
+    
     @Override
     public String toString(){
-        return  "Incentivos fiscais recebidos.:" + getIncentivosFiscais() +
-                "Impostos municipais pagos....:" + getImpostosMunicipais() +
-                "Impostos estaduais recolhidos:" + getImpostosEstaduais() +
-                "Impostos federais pagos......:" + getImpostosFederais() +
+        return  "Incentivos fiscais recebidos.:" + getIncentivosFiscais() + "\n" +
+                "Impostos municipais pagos....:" + getImpostosMunicipais() + "\n" +
+                "Impostos estaduais recolhidos:" + getImpostosEstaduais() + "\n" +
+                "Impostos federais pagos......:" + getImpostosFederais() + "\n" +
                 "Taxas federais pagas.........:" + getTaxasFederais();
     }
 }
+    
+    
+
+    
