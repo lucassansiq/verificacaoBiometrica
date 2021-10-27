@@ -103,14 +103,14 @@ public class Produtora {
 
     @Override
     public String toString() {
-        return  "Código do Fabricante..........................:" + String.valueOf(getCodigo())+
-                "Nome da unidade produtora.....................:" + getNome() +
-                "Endereço do produtor agrícola.................:" + getEndereco() + 
-                "Número de empregados da unidade produtora.....:" + getNumEmpregados() +
-                "Quantidade de máquinas e implementos aquícolas:" + getQtMaquinas()+
-                "Nível de automação da unidade produtora.......:" + getNivel() +
-                "Produto(s) agrícolas produzidos...............:" + getProdutos() +
-                "Destino da produção...........................:" + getDestino() +
+        return  "Código do Fabricante..........................:" + String.valueOf(getCodigo())+ "\n" +
+                "Nome da unidade produtora.....................:" + getNome() + "\n" +
+                "Endereço do produtor agrícola.................:" + getEndereco() + "\n" +
+                "Número de empregados da unidade produtora.....:" + getNumEmpregados() + "\n" +
+                "Quantidade de máquinas e implementos aquícolas:" + getQtMaquinas()+ "\n" +
+                "Nível de automação da unidade produtora.......:" + getNivel() + "\n" +
+                "Produto(s) agrícolas produzidos...............:" + getProdutos() + "\n" +
+                "Destino da produção...........................:" + getDestino() + "\n" +
                 "Produção anual em quilogramas.................:" + getProducao();
     }
 
