@@ -23,9 +23,14 @@ public class Agrotoxicos extends InformacoesFiscais{
         return agrotoxicos;
     }
     
-    public int getCdProdutora(){
-        return new Produtora().getCodigo();
+    public int getCdProdutora() {
+        return cdProdutora;
     }
+
+    public void setCdProdutora(int cdProdutora) {
+        this.cdProdutora = cdProdutora;
+    }
+    
 
     public Agrotoxicos(String agrotoxicos, String incentivosFiscais, String impostosMunicipais, String impostosEstaduais, String impostosFederais, String taxasFederais, int codigo, String NumEmpregados, String QtMaquinas, String Nivel, String nome, String endereco, String produtos, String destino, String producao) {
         super(incentivosFiscais, impostosMunicipais, impostosEstaduais, impostosFederais, taxasFederais, codigo, NumEmpregados, QtMaquinas, Nivel, nome, endereco, produtos, destino, producao);
@@ -35,12 +40,21 @@ public class Agrotoxicos extends InformacoesFiscais{
     public Agrotoxicos(String agrotoxicos) {
         setAgrotoxicos(agrotoxicos);
     }
+    
+    public Agrotoxicos(int cdProdutora,String agrotoxicos) {
+        setCdProdutora(cdProdutora);
+        setAgrotoxicos(agrotoxicos);
+    }
+    
+    public Agrotoxicos(){}
 
     @Override
     public String toString() {
         return "Agrotóxicos:" + "\n" +
                 getAgrotoxicos();
     }
+
+    
     
     
     

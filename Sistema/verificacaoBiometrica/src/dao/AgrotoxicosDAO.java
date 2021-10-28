@@ -11,51 +11,41 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import model.InformacoesFiscais;
-import model.Produtora;
+import model.Agrotoxicos;
 
 /**
  *
  * @author Lucas Hype
  */
-public class InformacoesFiscaisDAO implements dao.Persistencia<InformacoesFiscais> {
-
-    @Override
-    public int create(InformacoesFiscais obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private static InformacoesFiscaisDAO dao = null ;
+public class AgrotoxicosDAO implements Persistencia<Agrotoxicos>{
     
-    public InformacoesFiscaisDAO(){
+private static AgrotoxicosDAO dao = null ;
+    
+    public AgrotoxicosDAO(){
         
     }
     
-    public static InformacoesFiscaisDAO getInstance(){
-        if(dao == null) dao = new InformacoesFiscaisDAO();
+    public static AgrotoxicosDAO getInstance(){
+        if(dao == null) dao = new AgrotoxicosDAO();
         
         return dao;
     }
 
     @Override
-    public InformacoesFiscais findByCodigo(int id) {
+    public Agrotoxicos findByCodigo(int id) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        InformacoesFiscais c = null;
-        String sql = "SELECT * FROM InformacoesFiscais where cdProdutora = ?";
+        Agrotoxicos c = null;
+        String sql = "SELECT * FROM Agrotoxicos where cdProdutora = ?";
         try{
             pst = con.prepareStatement(sql);
             pst.setInt(1,id);
             rs = pst.executeQuery();
             while (rs.next()){
                 int CdProdutora = rs.getInt("cdProdutora");
-                String incentivosFiscais = rs.getString("incentivosFiscais");
-                String impostosMunicipais = rs.getString("impostosMunicipais");
-                String impostosEstaduais = rs.getString("impostosEstaduais");
-                String impostosFederais = rs.getString("impostosFederais");
-                String taxasFederais = rs.getString("taxasFederais");                
-                c = new InformacoesFiscais(CdProdutora,incentivosFiscais,impostosMunicipais,impostosEstaduais,impostosFederais,taxasFederais);
+                String Agrotoxicos = rs.getString("Agrotoxicos");   
+                c = new Agrotoxicos(CdProdutora,Agrotoxicos);
             }
             
         }catch(SQLException ex){
@@ -67,12 +57,12 @@ public class InformacoesFiscaisDAO implements dao.Persistencia<InformacoesFiscai
     }
    
     @Override
-    public InformacoesFiscais findByUsuario(String user){
+    public Agrotoxicos findByUsuario(String user){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement pst = null;
         ResultSet rs = null;
         int codigo = 0;
-        InformacoesFiscais c = null;
+        Agrotoxicos c = null;
         String sql = "SELECT codigo FROM Produtora where Nome = ?";
         try{
             pst = con.prepareStatement(sql);
@@ -97,14 +87,18 @@ public class InformacoesFiscaisDAO implements dao.Persistencia<InformacoesFiscai
     }
 
     @Override
-    public void update(InformacoesFiscais obj) {
+    public void update(Agrotoxicos obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<InformacoesFiscais> read() {
+    public List<Agrotoxicos> read() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    @Override
+    public int create(Agrotoxicos obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

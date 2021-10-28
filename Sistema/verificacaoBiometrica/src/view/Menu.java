@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Agrotoxicos;
 import model.InformacoesFiscais;
 import model.Produtora;
 import model.Usuario;
@@ -66,6 +67,8 @@ public class Menu extends javax.swing.JFrame {
         tfNomeEmpresaN3 = new javax.swing.JTextField();
         btVerificarN3 = new javax.swing.JButton();
         pnAgrotoxico = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tpAgrotoxicos = new javax.swing.JTextPane();
         pnCadastro = new javax.swing.JPanel();
         pnDados = new javax.swing.JPanel();
         tfNome = new javax.swing.JTextField();
@@ -264,15 +267,17 @@ public class Menu extends javax.swing.JFrame {
 
         pnAgrotoxico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jScrollPane3.setViewportView(tpAgrotoxicos);
+
         javax.swing.GroupLayout pnAgrotoxicoLayout = new javax.swing.GroupLayout(pnAgrotoxico);
         pnAgrotoxico.setLayout(pnAgrotoxicoLayout);
         pnAgrotoxicoLayout.setHorizontalGroup(
             pnAgrotoxicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
         );
         pnAgrotoxicoLayout.setVerticalGroup(
             pnAgrotoxicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 289, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnAgrotoxicosLayout = new javax.swing.GroupLayout(pnAgrotoxicos);
@@ -541,7 +546,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btVerificarN2ActionPerformed
 
     private void btVerificarN3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN3ActionPerformed
-        // TODO add your handling code here:
+        consultaAgrotoxicos();
     }//GEN-LAST:event_btVerificarN3ActionPerformed
 
     private void btVerificarN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN1ActionPerformed
@@ -646,6 +651,13 @@ public class Menu extends javax.swing.JFrame {
         tpFiscais.setText(fiscais.toString());
         tfNomeEmpresaN2.setText("");
     }
+    
+    private void consultaAgrotoxicos() {
+        Agrotoxicos agrotoxicos = new Agrotoxicos();
+        agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByUsuario(tfNomeEmpresaN3.getText());
+        tpAgrotoxicos.setText(agrotoxicos.toString());
+        tfNomeEmpresaN3.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
@@ -663,6 +675,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbBemvindo;
     private javax.swing.JLabel lbNivel;
@@ -687,6 +700,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField tfNomeEmpresaN3;
     private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUsuario;
+    private javax.swing.JTextPane tpAgrotoxicos;
     private javax.swing.JTextPane tpFiscais;
     private javax.swing.JTextPane tpProducoesAgricolas;
     // End of variables declaration//GEN-END:variables
