@@ -111,7 +111,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        lbNomeUsuario.setText("Nome do Empresa :");
+        lbNomeUsuario.setText("Nome ou Código da Empresa :");
 
         pnProducao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -142,8 +142,8 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(tfNomeEmpresaN1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btVerificarN1)
-                        .addGap(0, 28, Short.MAX_VALUE)))
-                .addGap(53, 53, 53))
+                        .addGap(0, 26, Short.MAX_VALUE)))
+                .addGap(24, 24, 24))
         );
         pnProducaoAgricolaLayout.setVerticalGroup(
             pnProducaoAgricolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +181,7 @@ public class Menu extends javax.swing.JFrame {
 
         pnInformacoesFiscais.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacões Fiscais"));
 
-        jLabel1.setText("Nome da Empresa :");
+        jLabel1.setText("Nome ou Código da Empresa :");
 
         btVerificarN2.setText("Verificar");
         btVerificarN2.addActionListener(new java.awt.event.ActionListener() {
@@ -212,15 +212,14 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(pnInformacoesFiscaisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnInformacoesFiscaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnInformacoesFiscaisLayout.createSequentialGroup()
                         .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNomeEmpresaN2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(tfNomeEmpresaN2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(btVerificarN2)
-                        .addGap(60, 60, 60)))
-                .addGap(50, 50, 50))
+                        .addComponent(btVerificarN2))
+                    .addComponent(pnFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         pnInformacoesFiscaisLayout.setVerticalGroup(
             pnInformacoesFiscaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +255,7 @@ public class Menu extends javax.swing.JFrame {
 
         pnAgrotoxicos.setBorder(javax.swing.BorderFactory.createTitledBorder("Agrotóxicos"));
 
-        jLabel2.setText("Nome da Empresa: ");
+        jLabel2.setText("Nome ou Código da Empresa : ");
 
         btVerificarN3.setText("Verificar");
         btVerificarN3.addActionListener(new java.awt.event.ActionListener() {
@@ -291,10 +290,10 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(pnAgrotoxicosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNomeEmpresaN3, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(tfNomeEmpresaN3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btVerificarN3)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         pnAgrotoxicosLayout.setVerticalGroup(
             pnAgrotoxicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,7 +359,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(lbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNivel)
                     .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,7 +446,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btListar1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                         .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -474,10 +473,9 @@ public class Menu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbBemvindo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lbBemvindo)
+                .addContainerGap(531, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,7 +548,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btVerificarN3ActionPerformed
 
     private void btVerificarN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN1ActionPerformed
-        consultaProdutora();
+        consultaTudo(tfNomeEmpresaN1.getText());
+        tfNomeEmpresaN1.setText("");
     }//GEN-LAST:event_btVerificarN1ActionPerformed
 
     /**
@@ -646,17 +645,74 @@ public class Menu extends javax.swing.JFrame {
     }
     
     private void consultaInformacoesFiscais() {
-        InformacoesFiscais fiscais = new InformacoesFiscais(); 
-        fiscais = dao.InformacoesFiscaisDAO.getInstance().findByUsuario(tfNomeEmpresaN2.getText());
-        tpFiscais.setText(fiscais.toString());
-        tfNomeEmpresaN2.setText("");
+        if(validaBusca(tfNomeEmpresaN2.getText()) == true){
+            InformacoesFiscais fiscais = new InformacoesFiscais(); 
+            fiscais = dao.InformacoesFiscaisDAO.getInstance().findByUsuario(tfNomeEmpresaN2.getText());
+            tpFiscais.setText(fiscais.toString());
+            tfNomeEmpresaN2.setText("");
+            tpProducoesAgricolas.setText("");
+            tpAgrotoxicos.setText("");
+        }else{
+            InformacoesFiscais fiscais = new InformacoesFiscais(); 
+            fiscais = dao.InformacoesFiscaisDAO.getInstance().findByCodigo(Integer.parseInt(tfNomeEmpresaN2.getText()));
+            tpFiscais.setText(fiscais.toString());
+            tfNomeEmpresaN2.setText("");
+            tpProducoesAgricolas.setText("");
+            tpAgrotoxicos.setText("");
+        }
     }
     
     private void consultaAgrotoxicos() {
-        Agrotoxicos agrotoxicos = new Agrotoxicos();
-        agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByUsuario(tfNomeEmpresaN3.getText());
-        tpAgrotoxicos.setText(agrotoxicos.toString());
-        tfNomeEmpresaN3.setText("");
+        if(validaBusca(tfNomeEmpresaN3.getText()) == true){
+            Agrotoxicos agrotoxicos = new Agrotoxicos();
+            agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByUsuario(tfNomeEmpresaN3.getText());
+            tpAgrotoxicos.setText(agrotoxicos.toString());
+            tfNomeEmpresaN3.setText("");
+            tpProducoesAgricolas.setText("");
+            tpFiscais.setText("");
+        }else{
+            Agrotoxicos agrotoxicos = new Agrotoxicos();
+            agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByCodigo(Integer.parseInt(tfNomeEmpresaN3.getText()));
+            tpAgrotoxicos.setText(agrotoxicos.toString());
+            tfNomeEmpresaN3.setText("");
+            tpProducoesAgricolas.setText("");
+            tpFiscais.setText("");
+        }
+    }
+    
+    private void consultaTudo(String var){
+        if(validaBusca(var) == true){
+            Produtora produtora = new Produtora();
+            InformacoesFiscais fiscais = new InformacoesFiscais();
+            Agrotoxicos agrotoxicos = new Agrotoxicos();
+            produtora = dao.ProdutoraDAO.getInstance().findByUsuario(var);
+            fiscais = dao.InformacoesFiscaisDAO.getInstance().findByUsuario(var);
+            agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByUsuario(var);
+            tpProducoesAgricolas.setText(produtora.toString());
+            tpFiscais.setText(fiscais.toString());
+            tpAgrotoxicos.setText(agrotoxicos.toString());
+        }else{
+            Produtora produtora = new Produtora();
+            InformacoesFiscais fiscais = new InformacoesFiscais();
+            Agrotoxicos agrotoxicos = new Agrotoxicos();
+            produtora = dao.ProdutoraDAO.getInstance().findByCodigo(Integer.parseInt(var));
+            fiscais = dao.InformacoesFiscaisDAO.getInstance().findByCodigo(Integer.parseInt(var));
+            agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByCodigo(Integer.parseInt(var));
+            tpProducoesAgricolas.setText(produtora.toString());
+            tpFiscais.setText(fiscais.toString());
+            tpAgrotoxicos.setText(agrotoxicos.toString());
+        }
+    }
+    
+    private boolean validaBusca(String verificar){
+        boolean res;
+        
+        if(verificar.matches("[0-999999]*"))
+            res = false;
+        else 
+            res = true;
+        
+        return res;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

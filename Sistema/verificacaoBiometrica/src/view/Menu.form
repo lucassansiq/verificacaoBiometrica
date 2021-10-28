@@ -45,12 +45,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" alignment="0" min="-2" pref="616" max="-2" attributes="0"/>
-                      <Component id="lbBemvindo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="lbBemvindo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="531" max="32767" attributes="0"/>
               </Group>
+              <Component id="jTabbedPane1" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -139,10 +137,10 @@
                                       <Component id="tfNomeEmpresaN1" min="-2" pref="302" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btVerificarN1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -178,7 +176,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="lbNomeUsuario">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Nome do Empresa :"/>
+                        <Property name="text" type="java.lang.String" value="Nome ou C&#xf3;digo da Empresa :"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JPanel" name="pnProducao">
@@ -265,17 +263,16 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="pnFiscal" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tfNomeEmpresaN2" min="-2" pref="282" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="tfNomeEmpresaN2" min="-2" pref="268" max="-2" attributes="0"/>
-                                      <EmptySpace pref="9" max="32767" attributes="0"/>
                                       <Component id="btVerificarN2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="pnFiscal" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace pref="70" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -298,7 +295,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Nome da Empresa :"/>
+                        <Property name="text" type="java.lang.String" value="Nome ou C&#xf3;digo da Empresa :"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="tfNomeEmpresaN2">
@@ -399,12 +396,12 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfNomeEmpresaN3" min="-2" pref="333" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="tfNomeEmpresaN3" min="-2" pref="302" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btVerificarN3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="33" max="32767" attributes="0"/>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -427,7 +424,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Nome da Empresa: "/>
+                        <Property name="text" type="java.lang.String" value="Nome ou C&#xf3;digo da Empresa : "/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="tfNomeEmpresaN3">
@@ -503,7 +500,7 @@
                                   <Component id="btExcluir" min="-2" pref="87" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btListar1" min="-2" pref="87" max="-2" attributes="0"/>
-                                  <EmptySpace pref="102" max="32767" attributes="0"/>
+                                  <EmptySpace pref="122" max="32767" attributes="0"/>
                                   <Component id="btListar" min="-2" pref="87" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -552,7 +549,7 @@
                                   <Component id="lbSenha" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
                                   <Component id="tfSenha" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="64" max="32767" attributes="0"/>
+                              <EmptySpace pref="84" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbNivel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbNivel" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
