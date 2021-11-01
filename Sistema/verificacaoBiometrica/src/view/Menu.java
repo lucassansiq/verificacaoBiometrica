@@ -83,8 +83,9 @@ public class Menu extends javax.swing.JFrame {
         btSalvar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
-        btListar = new javax.swing.JButton();
         btListar1 = new javax.swing.JButton();
+        btListar = new javax.swing.JButton();
+        btListar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -414,14 +415,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btListar.setBackground(new java.awt.Color(255, 204, 204));
-        btListar.setText("Limpar");
-        btListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btListarActionPerformed(evt);
-            }
-        });
-
         btListar1.setBackground(new java.awt.Color(153, 204, 255));
         btListar1.setText("Listar");
         btListar1.addActionListener(new java.awt.event.ActionListener() {
@@ -440,14 +433,13 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(pnDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnCadastroLayout.createSequentialGroup()
                         .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btListar1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                        .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnCadastroLayout.setVerticalGroup(
@@ -456,12 +448,12 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(pnDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btListar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btListar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -474,7 +466,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbBemvindo)
-                .addContainerGap(531, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
@@ -487,15 +479,43 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btListar.setBackground(new java.awt.Color(255, 204, 204));
+        btListar.setText("Limpar Atual");
+        btListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListarActionPerformed(evt);
+            }
+        });
+
+        btListar2.setBackground(new java.awt.Color(255, 204, 204));
+        btListar2.setText("Limpar Tudo");
+        btListar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btListar)
+                .addGap(18, 18, 18)
+                .addComponent(btListar2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btListar2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -532,7 +552,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        consultaUsuario();
+        try{
+            consultaUsuario();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Esse usuario não existe");
+        }
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void tfNomeEmpresaN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeEmpresaN1ActionPerformed
@@ -540,17 +564,34 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_tfNomeEmpresaN1ActionPerformed
 
     private void btVerificarN2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN2ActionPerformed
+        try{
             consultaInformacoesFiscais();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Esse registro não existe");
+        } 
     }//GEN-LAST:event_btVerificarN2ActionPerformed
 
     private void btVerificarN3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN3ActionPerformed
-        consultaAgrotoxicos();
+        try{
+            consultaAgrotoxicos();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Esse registro não existe");
+        }
     }//GEN-LAST:event_btVerificarN3ActionPerformed
 
     private void btVerificarN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN1ActionPerformed
-        consultaTudo(tfNomeEmpresaN1.getText());
-        tfNomeEmpresaN1.setText("");
+        try{
+            consultaTudo(tfNomeEmpresaN1.getText());
+            tfNomeEmpresaN1.setText("");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Esse registro não existe");
+        }
+        
     }//GEN-LAST:event_btVerificarN1ActionPerformed
+
+    private void btListar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListar2ActionPerformed
+        limpaTodos();
+    }//GEN-LAST:event_btListar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -603,11 +644,39 @@ public class Menu extends javax.swing.JFrame {
     }
     
     private void limpaCampo(){
+        int num = jTabbedPane1.getSelectedIndex();
+        
+        if(num == 0){
+            tfNomeEmpresaN1.setText("");
+            tpProducoesAgricolas.setText("");
+        }
+        else if(num == 1){
+            tfNomeEmpresaN2.setText("");
+            tpFiscais.setText("");
+        }
+        else if(num == 2){
+            tfNomeEmpresaN3.setText("");
+            tpAgrotoxicos.setText("");
+        }
+        else if(num == 3){
+             tfNome.setText("");
+            tfUsuario.setText("");
+            tfSenha.setText("");
+            cbNivel.setSelectedIndex(0);   
+        }
+    }
+    
+    private void limpaTodos(){
+        tfNomeEmpresaN1.setText("");
+        tpProducoesAgricolas.setText("");
+        tfNomeEmpresaN2.setText("");
+        tpFiscais.setText("");
+        tfNomeEmpresaN3.setText("");
+        tpAgrotoxicos.setText("");
         tfNome.setText("");
         tfUsuario.setText("");
         tfSenha.setText("");
         cbNivel.setSelectedIndex(0);
-        
     }
     
     private void consultaUsuario(){
@@ -721,6 +790,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btListar;
     private javax.swing.JButton btListar1;
+    private javax.swing.JButton btListar2;
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btVerificarN1;
     private javax.swing.JButton btVerificarN2;
