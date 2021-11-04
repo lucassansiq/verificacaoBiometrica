@@ -636,7 +636,8 @@ public class Menu extends javax.swing.JFrame {
         String senha = tfSenha.getText();
         int nivel = cbNivel.getSelectedIndex();
         
-        System.out.println(new Usuario(nome,usuario,senha,nivel));
+        new Capture(nome,usuario,senha,nivel).setVisible(true);
+        
         
         limpaCampo();
         
