@@ -12,10 +12,14 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.nio.IntBuffer;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import model.TrainLBPH;
 import model.Usuario;
 import org.bytedeco.javacpp.BytePointer;
 import static org.bytedeco.opencv.global.opencv_core.CV_32SC1;
@@ -56,8 +60,7 @@ public class Capture extends javax.swing.JFrame {
     String root,nome,usuario,senha;
     int numSamples = 25, sample = 1,nivel;
     
-    //util 
-    Connection con = ConnectionFactory.getConnection();
+    
     
     public Capture(String name,String user,String pass,int level) {
         initComponents();
@@ -77,9 +80,8 @@ public class Capture extends javax.swing.JFrame {
     class DaemonThread implements Runnable {
 
         protected volatile boolean runnable = false;
+                
         
-        
-
         @Override
         public void run() {
             synchronized (this) {
@@ -102,13 +104,12 @@ public class Capture extends javax.swing.JFrame {
                             for (int i = 0; i < detectedFaces.size(); i++) { //repetição pra encontrar as faces
                                 Rect dadosFace = detectedFaces.get(0);
 
-                                rectangle(imageColor, dadosFace, new Scalar(255, 255, 0, 2));
+                                rectangle(imageColor, dadosFace, new Scalar(255, 255, 0, 2), 3, 0, 0);
 
                                 Mat face = new Mat(imageGray, dadosFace);
                                 opencv_imgproc.resize(face, face, new Size(160, 160));
 
                                 if (saveButton.getModel().isPressed()) { //quando apertar o botão saveButton
-                                    
                                         if (sample <= numSamples) {
 //                                        salva a imagem cortada [160,160]
 //                                        nome do arquivo: idpessoa + a contagem de fotos. ex: person.10(id).6(sexta foto).jpg
@@ -120,41 +121,38 @@ public class Capture extends javax.swing.JFrame {
                                             sample++;
                                         }
                                         if (sample > 25) {
-                                            generate();
-                                            insertDatabase();
+                                            new TrainLBPH().trainPhotos();//se a contagem for maior que 25, termina de tirar a foto, gera o arquivo
+                                            insertDatabase(); //insere os dados no banco
+
                                             System.out.println("File Generated");
-                                            stopCamera();
+                                            stopCamera(); // e fecha a camera
                                         }
-                                        
 
                                     }
                                 }
-                            
+                            }
 
                             imencode(".bmp", cameraImage, mem);
                             Image im = ImageIO.read(new ByteArrayInputStream(mem.getStringBytes()));
                             BufferedImage buff = (BufferedImage) im;
                             try {
-                                if (g.drawImage(buff, 0, 0, 360, 390, 0, 0, buff.getWidth(), buff.getHeight(), null)) {
+                                //if (g.drawImage(buff, 0, 0, 360, 390, 0, 0, buff.getWidth(), buff.getHeight(), null)) {
                                     if (runnable == false) {
                                         System.out.println("Salve a Foto");
                                         this.wait();
                                     }
-                                }
-                                
-                            } catch (Exception ex) {
-                                ex.printStackTrace();
-                                JOptionPane.showMessageDialog(null,"Erro ao iniciar camera (IOEx)\n" + ex);
+                                //}
+                            } catch (Exception e) {
                             }
-                        }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+                        } catch (IOException ex) {
+                        Logger.getLogger(Capture.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     }
                 }
             }
         }
-        
-    }
+    
+
     
     public void generate(){
         File directory = new File(System.getProperty("user.dir") + "\\photos\\");
