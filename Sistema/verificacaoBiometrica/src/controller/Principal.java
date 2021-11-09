@@ -6,6 +6,8 @@
 
 package controller;
 
+import view.Login;
+
 /**
  *
  * @author Lucas Hype
@@ -14,9 +16,10 @@ public class Principal {
     
     public static void main(String[] args) {
         //Verificar se o caminho está correto
-        System.out.println("jdbc:sqlite:" + System.getProperty("user.dir") + "\\db\\verificacaoBiometrica.db");
+        //System.out.println("jdbc:sqlite:" + System.getProperty("user.dir") + "\\db\\verificacaoBiometrica.db");
         dao.ConnectionFactory.getConnection();
-        
+        Login login = new Login();
+        login.setVisible(true);
     }
 
 }
