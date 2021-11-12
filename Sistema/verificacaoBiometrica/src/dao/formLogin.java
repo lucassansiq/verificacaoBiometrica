@@ -78,6 +78,32 @@ public class formLogin {
         
         return nome;
     }
+    
+    
+    public int nivelUsuario(String login, String senha){
+        int nivel = 0;
+        String sql;
+        try {
+            Connection conn = ConnectionFactory.getConnection();
+
+            sql = "SELECT id,nome,usuario,senha,nivel FROM Usuario WHERE usuario=? and senha=?";
+            PreparedStatement ps;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, login);
+            ps.setString(2, senha);
+
+            ResultSet rs;
+            rs = ps.executeQuery();
+
+            nivel = rs.getInt("nivel");
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+        return nivel;
+    }
 
     public int getAcesso() {
         return Acesso;
