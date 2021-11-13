@@ -5,7 +5,9 @@
  */
 package view;
 
+import Reconhecimento.Captura;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -13,6 +15,7 @@ import model.Agrotoxicos;
 import model.InformacoesFiscais;
 import model.Produtora;
 import model.Usuario;
+import org.bytedeco.javacv.FrameGrabber;
 
 /**
  *
@@ -23,9 +26,20 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Cadastro
      */
-    public Menu(String user) {
+    public Menu(String user,int nivel) {
         initComponents();
         lbBemvindo.setText("Bem vindo!," + user);
+        if(nivel == 1){
+            jTabbedPane1.remove(pnCadastro);
+            jTabbedPane1.remove(pnNivel3);
+            jTabbedPane1.remove(pnNivel2);         
+        }
+        else if(nivel == 2){
+            jTabbedPane1.remove(pnCadastro);
+            jTabbedPane1.remove(pnNivel3);         
+        }
+        
+        
         
     }
 
@@ -542,13 +556,26 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btListar1ActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        
-        //Verificacao se selecionou um nivel, caso não aparece mensagem de erro
+        //        Verificacao se selecionou um nivel, caso não aparece mensagem de erro
         if(cbNivel.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(null,"Selecione um nível");
         }else{
             gravaUsuario();
+            Random random = new Random();
+            int numero = random. nextInt(100);
+
+
+            //Inicia a captura da imagem
+            try { 
+                Captura cam = new Captura (numero);       
+            } catch (FrameGrabber.Exception ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+        
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed

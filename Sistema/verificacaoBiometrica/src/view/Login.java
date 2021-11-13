@@ -10,6 +10,23 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.bytedeco.javacpp.DoublePointer;
+import org.bytedeco.javacpp.IntPointer;
+import org.bytedeco.javacpp.opencv_core;
+import static org.bytedeco.javacpp.opencv_core.FONT_HERSHEY_PLAIN;
+import org.bytedeco.javacpp.opencv_face;
+import static org.bytedeco.javacpp.opencv_face.createEigenFaceRecognizer;
+import static org.bytedeco.javacpp.opencv_imgproc.COLOR_BGRA2GRAY;
+import static org.bytedeco.javacpp.opencv_imgproc.cvtColor;
+import static org.bytedeco.javacpp.opencv_imgproc.putText;
+import static org.bytedeco.javacpp.opencv_imgproc.rectangle;
+import static org.bytedeco.javacpp.opencv_imgproc.resize;
+import org.bytedeco.javacpp.opencv_objdetect;
+import org.bytedeco.javacv.CanvasFrame;
+import org.bytedeco.javacv.Frame;
+import org.bytedeco.javacv.FrameGrabber;
+import org.bytedeco.javacv.OpenCVFrameConverter;
+import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 /**
  *
@@ -159,15 +176,15 @@ public class Login extends javax.swing.JFrame {
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
         //Cria um objeto da classe formLogin, e usa o metodo consultar
-        //Faz a verificacao se consta no banco
-        
+        //Faz a verificacao se consta no banco 
         formLogin novo = new formLogin();
         String valor = new String(tfSenha.getPassword());
         String usuario = new String(tfUsuario.getText());
         boolean resposta = novo.consultar(usuario, valor);
         if (resposta == true) {
             String nome = novo.nomeUsuario(usuario, valor);
-            new Menu(nome).setVisible(true);
+            int nivel = novo.nivelUsuario(usuario, valor);
+            new Menu(nome,nivel).setVisible(true);
             this.setVisible(false);
             JOptionPane.showMessageDialog(this, "Acesso Confirmado");
         } else {
@@ -210,6 +227,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogar;
