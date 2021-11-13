@@ -563,8 +563,6 @@ public class Menu extends javax.swing.JFrame {
             gravaUsuario();
             Random random = new Random();
             int numero = random. nextInt(100);
-
-
             //Inicia a captura da imagem
             try { 
                 Captura cam = new Captura (numero);       
