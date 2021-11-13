@@ -41,6 +41,8 @@ public class Menu extends javax.swing.JFrame {
         
         
         
+        
+        
     }
 
     public Menu() {
@@ -599,6 +601,7 @@ public class Menu extends javax.swing.JFrame {
     private void btVerificarN3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerificarN3ActionPerformed
         try{
             consultaAgrotoxicos();
+            
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Esse registro não existe");
         }
@@ -746,6 +749,7 @@ public class Menu extends javax.swing.JFrame {
             tfNomeEmpresaN2.setText("");
             tpProducoesAgricolas.setText("");
             tpAgrotoxicos.setText("");
+            JOptionPane.showMessageDialog(null, "Existe Agrotóxico Proíbido");
         }else{
             InformacoesFiscais fiscais = new InformacoesFiscais(); 
             fiscais = dao.InformacoesFiscaisDAO.getInstance().findByCodigo(Integer.parseInt(tfNomeEmpresaN2.getText()));
@@ -758,16 +762,24 @@ public class Menu extends javax.swing.JFrame {
     
     private void consultaAgrotoxicos() {
         if(validaBusca(tfNomeEmpresaN3.getText()) == true){
+            JOptionPane.showMessageDialog(null, "Existe Agrotóxico Proíbido");
             Agrotoxicos agrotoxicos = new Agrotoxicos();
             agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByUsuario(tfNomeEmpresaN3.getText());
-            tpAgrotoxicos.setText(agrotoxicos.toString());
+            String texto = agrotoxicos.toString();
+            texto = texto.replaceAll(";", "\n");
+            tpAgrotoxicos.setText(texto);
             tfNomeEmpresaN3.setText("");
             tpProducoesAgricolas.setText("");
             tpFiscais.setText("");
+            
+            
         }else{
+            JOptionPane.showMessageDialog(null, "Existe Agrotóxico Proíbido");
             Agrotoxicos agrotoxicos = new Agrotoxicos();
             agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByCodigo(Integer.parseInt(tfNomeEmpresaN3.getText()));
-            tpAgrotoxicos.setText(agrotoxicos.toString());
+            String texto = agrotoxicos.toString();
+            texto = texto.replaceAll(";", "\n");  
+            tpAgrotoxicos.setText(texto);
             tfNomeEmpresaN3.setText("");
             tpProducoesAgricolas.setText("");
             tpFiscais.setText("");
@@ -784,7 +796,10 @@ public class Menu extends javax.swing.JFrame {
             agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByUsuario(var);
             tpProducoesAgricolas.setText(produtora.toString());
             tpFiscais.setText(fiscais.toString());
-            tpAgrotoxicos.setText(agrotoxicos.toString());
+            String texto = agrotoxicos.toString();
+            texto = texto.replaceAll(";", "\n");
+            tpAgrotoxicos.setText(texto);
+            JOptionPane.showMessageDialog(null, "Existe Agrotóxico Proíbido");
         }else{
             Produtora produtora = new Produtora();
             InformacoesFiscais fiscais = new InformacoesFiscais();
@@ -794,7 +809,10 @@ public class Menu extends javax.swing.JFrame {
             agrotoxicos = dao.AgrotoxicosDAO.getInstance().findByCodigo(Integer.parseInt(var));
             tpProducoesAgricolas.setText(produtora.toString());
             tpFiscais.setText(fiscais.toString());
-            tpAgrotoxicos.setText(agrotoxicos.toString());
+            String texto = agrotoxicos.toString();
+            texto = texto.replaceAll(";", "\n");
+            tpAgrotoxicos.setText(texto);
+            JOptionPane.showMessageDialog(null, "Existe Agrotóxico Proíbido");
         }
     }
     

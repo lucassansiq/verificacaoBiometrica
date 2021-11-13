@@ -91,10 +91,10 @@ public class Reconhecimento {
         camera.stop();
     }
     
-    public void Executar(String user) throws FrameGrabber.Exception{
+    public String Executar() throws FrameGrabber.Exception{
         OpenCVFrameConverter.ToMat converteMat = new OpenCVFrameConverter.ToMat();
         OpenCVFrameGrabber camera = new OpenCVFrameGrabber(0);
-        String[] pessoas = {"",user};
+        String[] pessoas = {"","John","Gabriel"};
         camera.start();
         
         CascadeClassifier detectorFace = new CascadeClassifier("src\\Recursos\\haarcascade_frontalface_alt.xml");
@@ -103,7 +103,7 @@ public class Reconhecimento {
         CanvasFrame cFrame = new CanvasFrame("Preview", CanvasFrame.getDefaultGamma() / camera.getGamma());
         Frame frameCapturado = null;
         Mat imagemColorida = new Mat();
-        
+        String nome = null;
         while ((frameCapturado = camera.grab()) != null) {
             imagemColorida = converteMat.convert(frameCapturado);
             Mat imagemCinza = new Mat();
@@ -121,7 +121,7 @@ public class Reconhecimento {
                 DoublePointer confianca = new DoublePointer(1);
                 reconhecedor.predict(faceCapturada, rotulo, confianca);
                 int predicao = rotulo.get(0);
-                String nome;
+                
                 if (predicao == -1){
                     nome = "Desconhecido";
                 }else{
@@ -141,6 +141,8 @@ public class Reconhecimento {
         }
         cFrame.dispose();
         camera.stop();
+        
+        return nome;
     }
     
     

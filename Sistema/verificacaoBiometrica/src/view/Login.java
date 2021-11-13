@@ -5,6 +5,7 @@
  */
 package view;
 
+import Reconhecimento.Reconhecimento;
 import dao.formLogin;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -190,6 +191,32 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Acesso Negado");
         }
+        
+//--------------------------> Para printar no documento        
+//        formLogin novo = new formLogin();
+//        String valor = new String(tfSenha.getPassword());
+//        String usuario = new String(tfUsuario.getText());
+//        boolean resposta = novo.consultar(usuario, valor);
+//        if (resposta == true) {
+//            try {
+//                String avaliar == Reconhecimento.Executar();
+//            } catch (FrameGrabber.Exception ex) {
+//                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            if(avaliar == "Desconhecido"){
+//                JOptionPane.showMessageDialog(this, "Pessoa Desconhecida");
+//            }
+//            else{
+//                String nome = novo.nomeUsuario(usuario, valor);
+//                int nivel = novo.nivelUsuario(usuario, valor);
+//                new Menu(nome,nivel).setVisible(true);
+//                this.setVisible(false);
+//                JOptionPane.showMessageDialog(this, "Acesso Confirmado");
+//            }  
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Acesso Negado");
+//        }
+        
         
     }//GEN-LAST:event_btLogarActionPerformed
 
