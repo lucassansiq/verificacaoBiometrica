@@ -40,14 +40,15 @@ public class UsuarioDAO implements dao.Persistencia<Usuario> {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String sql = "INSERT INTO Usuario(nome,usuario,senha,nivel) VALUES"
-                + "(?,?,?,?)";
+        String sql = "INSERT INTO Usuario(nome,usuario,senha,nivel,foto) VALUES"
+                + "(?,?,?,?,?)";
         try{
             pst = con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             pst.setString(1, c.getNome());
             pst.setString(2, c.getUsuario());
             pst.setString(3, c.getSenha());
             pst.setInt(4, c.getNivel());
+            pst.setString(5, c.getFoto());
             pst.execute();
             rs = pst.getGeneratedKeys();
             if (rs.next()){
@@ -79,7 +80,8 @@ public class UsuarioDAO implements dao.Persistencia<Usuario> {
                 String usuario = rs.getString("usuario");
                 String senha = rs.getString("senha");
                 int nivel = rs.getInt("nivel");
-                c = new Usuario(codigo,nome,usuario,senha,nivel);
+                String foto = rs.getString("foto");
+                c = new Usuario(codigo,nome,usuario,senha,nivel,foto);
             }
             
         }catch(SQLException ex){
@@ -108,7 +110,9 @@ public class UsuarioDAO implements dao.Persistencia<Usuario> {
                 String usuario = rs.getString("usuario");
                 String senha = rs.getString("senha");
                 int nivel = rs.getInt("nivel");
-                c = new Usuario(nome,usuario,senha,nivel);
+                String foto = rs.getString("foto");
+               
+                c = new Usuario(nome,usuario,senha,nivel,foto);
             }
             
         }catch(SQLException ex){
@@ -142,13 +146,14 @@ public class UsuarioDAO implements dao.Persistencia<Usuario> {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String sql = "UPDATE usuario set nome=?,senha=?,nivel=? where usuario=?";
+        String sql = "UPDATE usuario set nome=?,senha=?,nivel=?, foto=? where usuario=?";
         try{
             pst = con.prepareStatement(sql);
             pst.setString(1, c.getNome());
             pst.setString(2, c.getSenha());
             pst.setInt(3, c.getNivel());
             pst.setString(4,c.getUsuario());
+            pst.setString(5,c.getFoto());
             pst.execute();
         }catch(SQLException ex){
             throw new RuntimeException("Erro no update");

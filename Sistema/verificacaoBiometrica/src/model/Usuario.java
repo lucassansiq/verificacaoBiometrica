@@ -9,6 +9,7 @@ package model;
 import dao.UsuarioDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.html.ImageView;
 
 /**
  *
@@ -16,8 +17,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Usuario {
     
-    private String nome, usuario,senha = null;
+    private String nome, usuario,senha, foto= null;
     private int nivel,id = 0;
+   
     
     public int setId(int id){
         return this.id;
@@ -58,6 +60,10 @@ public class Usuario {
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
+    
+    public void selecionaFoto(){
+        
+    }
 
     public Usuario(String nome, String usuario, String senha, int nivel) {
         setNome(nome);
@@ -67,12 +73,31 @@ public class Usuario {
         gravar();
     }
     
+    public Usuario(String nome, String usuario, String senha, int nivel, String foto) {
+        setNome(nome);
+        setUsuario(usuario);
+        setSenha(senha);
+        setNivel(nivel);
+        setFoto(foto);
+        gravar();
+    }
+    
     public Usuario(int id,String nome, String usuario, String senha, int nivel) {
         setId(id);
         setNome(nome);
         setUsuario(usuario);
         setSenha(senha);
         setNivel(nivel);
+        gravar();
+    }
+    
+    public Usuario(int id,String nome, String usuario, String senha, int nivel,String foto) {
+        setId(id);
+        setNome(nome);
+        setUsuario(usuario);
+        setSenha(senha);
+        setNivel(nivel);
+        setFoto(foto);
         gravar();
     }
     
@@ -106,6 +131,14 @@ public class Usuario {
             modelo.addRow(reg);
         }
         return modelo;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
     

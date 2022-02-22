@@ -6,11 +6,18 @@
 package view;
 
 import Reconhecimento.Captura;
+import java.io.File;
 import java.sql.SQLException;
+import java.text.Normalizer.Form;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Agrotoxicos;
 import model.InformacoesFiscais;
 import model.Produtora;
@@ -22,6 +29,8 @@ import org.bytedeco.javacv.FrameGrabber;
  * @author Lucas
  */
 public class Menu extends javax.swing.JFrame {
+    
+    JLabel lb = new JLabel();
 
     /**
      * Creates new form Cadastro
@@ -38,6 +47,7 @@ public class Menu extends javax.swing.JFrame {
             jTabbedPane1.remove(pnCadastro);
             jTabbedPane1.remove(pnNivel3);         
         }
+        tfArquivo.setEditable(false);
         
         
         
@@ -96,6 +106,10 @@ public class Menu extends javax.swing.JFrame {
         lbNivel = new javax.swing.JLabel();
         cbNivel = new javax.swing.JComboBox<>();
         btBuscar = new javax.swing.JButton();
+        tfArquivo = new javax.swing.JTextField();
+        btProcurar = new javax.swing.JButton();
+        lbArquivo = new javax.swing.JLabel();
+        pnImagem = new javax.swing.JScrollPane();
         btSalvar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
@@ -172,7 +186,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btVerificarN1))
                 .addGap(18, 18, 18)
                 .addComponent(pnProducao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnNivel1Layout = new javax.swing.GroupLayout(pnNivel1);
@@ -219,7 +233,7 @@ public class Menu extends javax.swing.JFrame {
         );
         pnFiscalLayout.setVerticalGroup(
             pnFiscalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnInformacoesFiscaisLayout = new javax.swing.GroupLayout(pnInformacoesFiscais);
@@ -322,7 +336,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btVerificarN3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnAgrotoxico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnNivel3Layout = new javax.swing.GroupLayout(pnNivel3);
@@ -363,6 +377,22 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        tfArquivo.setText("Escolha um arquivo");
+        tfArquivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfArquivoActionPerformed(evt);
+            }
+        });
+
+        btProcurar.setText("Procurar");
+        btProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProcurarActionPerformed(evt);
+            }
+        });
+
+        lbArquivo.setText("Arquivo:");
+
         javax.swing.GroupLayout pnDadosLayout = new javax.swing.GroupLayout(pnDados);
         pnDados.setLayout(pnDadosLayout);
         pnDadosLayout.setHorizontalGroup(
@@ -371,22 +401,30 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tfNome)
-                    .addComponent(lbNome)
-                    .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(lbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                    .addComponent(tfUsuario)
+                    .addComponent(tfSenha)
+                    .addComponent(tfArquivo)
+                    .addGroup(pnDadosLayout.createSequentialGroup()
+                        .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbNome)
+                            .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(83, 83, 83)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btProcurar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNivel)
                     .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscar))
-                .addGap(141, 141, 141))
+                    .addComponent(btBuscar)
+                    .addComponent(pnImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81))
         );
         pnDadosLayout.setVerticalGroup(
             pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDadosLayout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+            .addGroup(pnDadosLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
                     .addComponent(lbNivel))
@@ -400,11 +438,22 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscar))
-                .addGap(19, 19, 19)
-                .addComponent(lbSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnDadosLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lbSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbArquivo)
+                        .addGap(8, 8, 8)
+                        .addGroup(pnDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btProcurar)))
+                    .addGroup(pnDadosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         btSalvar.setBackground(new java.awt.Color(153, 204, 255));
@@ -559,20 +608,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         //        Verificacao se selecionou um nivel, caso não aparece mensagem de erro
-        if(cbNivel.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(null,"Selecione um nível");
+        if(cbNivel.getSelectedIndex() == 0 && lbArquivo.getText() == "Escolha um arquivo"){
+            JOptionPane.showMessageDialog(null,"Preencha os campos obrigatórios");
         }else{
             gravaUsuario();
             Random random = new Random();
-            int numero = random. nextInt(100);
-            //Inicia a captura da imagem
-            try { 
-                Captura cam = new Captura (numero);       
-            } catch (FrameGrabber.Exception ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
+      
         }
         
         
@@ -621,6 +662,31 @@ public class Menu extends javax.swing.JFrame {
         limpaTodos();
     }//GEN-LAST:event_btListar2ActionPerformed
 
+    private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
+        
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Procurar arquivo");
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
+        
+        fc.setFileFilter(filter);
+        if(fc.showOpenDialog(jPanel2) == JFileChooser.APPROVE_OPTION){
+
+            File f = fc.getSelectedFile();
+            tfArquivo.setText(f.getPath());  
+            lb.setIcon(new ImageIcon(f.getPath()));
+            lb.setHorizontalAlignment(lb.CENTER);
+            pnImagem.getViewport().add(lb);
+            
+        }
+       
+    }//GEN-LAST:event_btProcurarActionPerformed
+
+    private void tfArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfArquivoActionPerformed
+        
+    }//GEN-LAST:event_tfArquivoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -663,8 +729,9 @@ public class Menu extends javax.swing.JFrame {
         String usuario = tfUsuario.getText();
         String senha = tfSenha.getText();
         int nivel = cbNivel.getSelectedIndex();
+        String foto = tfArquivo.getText();
         
-        System.out.println(new Usuario(nome,usuario,senha,nivel));
+        System.out.println(new Usuario(nome,usuario,senha,nivel,foto));
         
         limpaCampo();
         
@@ -690,7 +757,9 @@ public class Menu extends javax.swing.JFrame {
              tfNome.setText("");
             tfUsuario.setText("");
             tfSenha.setText("");
-            cbNivel.setSelectedIndex(0);   
+            cbNivel.setSelectedIndex(0);
+            tfArquivo.setText("Escolha um arquivo");
+            pnImagem.remove(lb);
         }
     }
     
@@ -705,6 +774,8 @@ public class Menu extends javax.swing.JFrame {
         tfUsuario.setText("");
         tfSenha.setText("");
         cbNivel.setSelectedIndex(0);
+        tfArquivo.setText("Escolha um arquivo");
+        pnImagem.remove(lb);
     }
     
     private void consultaUsuario(){
@@ -714,6 +785,10 @@ public class Menu extends javax.swing.JFrame {
         tfNome.setText(usuario.getNome());
         tfSenha.setText(usuario.getSenha());
         cbNivel.setSelectedIndex(usuario.getNivel());
+        tfArquivo.setText(usuario.getFoto());  
+        lb.setIcon(new ImageIcon(usuario.getFoto()));
+        lb.setHorizontalAlignment(lb.CENTER);
+        pnImagem.getViewport().add(lb);
     
     }
     
@@ -722,8 +797,9 @@ public class Menu extends javax.swing.JFrame {
         String user = tfUsuario.getText();
         String senha = tfSenha.getText();
         int nivel = cbNivel.getSelectedIndex();
+        String foto = tfArquivo.getText();
         
-        Usuario usuario = new Usuario(nome,user,senha,nivel);
+        Usuario usuario = new Usuario(nome,user,senha,nivel,foto);
         dao.UsuarioDAO.getInstance().update(usuario);
         
         limpaCampo();
@@ -834,6 +910,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btListar;
     private javax.swing.JButton btListar1;
     private javax.swing.JButton btListar2;
+    private javax.swing.JButton btProcurar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btVerificarN1;
     private javax.swing.JButton btVerificarN2;
@@ -846,6 +923,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbArquivo;
     private javax.swing.JLabel lbBemvindo;
     private javax.swing.JLabel lbNivel;
     private javax.swing.JLabel lbNome;
@@ -857,12 +935,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel pnCadastro;
     private javax.swing.JPanel pnDados;
     private javax.swing.JPanel pnFiscal;
+    private javax.swing.JScrollPane pnImagem;
     private javax.swing.JPanel pnInformacoesFiscais;
     private javax.swing.JPanel pnNivel1;
     private javax.swing.JPanel pnNivel2;
     private javax.swing.JPanel pnNivel3;
     private javax.swing.JPanel pnProducao;
     private javax.swing.JPanel pnProducaoAgricola;
+    private javax.swing.JTextField tfArquivo;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNomeEmpresaN1;
     private javax.swing.JTextField tfNomeEmpresaN2;

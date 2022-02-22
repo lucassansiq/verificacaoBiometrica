@@ -170,7 +170,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="pnProducao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="25" max="32767" attributes="0"/>
+                              <EmptySpace pref="33" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -340,7 +340,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" pref="320" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" pref="328" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -431,7 +431,7 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="pnAgrotoxico" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="61" max="32767" attributes="0"/>
+                              <EmptySpace pref="67" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -554,30 +554,40 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="tfNome" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lbNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbUsuario" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                                  <Component id="tfUsuario" alignment="0" pref="230" max="32767" attributes="0"/>
-                                  <Component id="lbSenha" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                                  <Component id="tfUsuario" alignment="0" max="32767" attributes="0"/>
                                   <Component id="tfSenha" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfArquivo" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lbNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbUsuario" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                                          <Component id="lbSenha" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                                          <Component id="lbArquivo" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="84" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btProcurar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="26" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbNivel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbNivel" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                                   <Component id="btBuscar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pnImagem" min="-2" pref="200" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="99" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lbNome" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lbNivel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -594,11 +604,26 @@
                                   <Component id="tfUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="lbSenha" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tfSenha" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <Component id="lbSenha" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tfSenha" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lbArquivo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="tfArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btProcurar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="pnImagem" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="23" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -653,6 +678,31 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JTextField" name="tfArquivo">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Escolha um arquivo"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfArquivoActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btProcurar">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Procurar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btProcurarActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbArquivo">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Arquivo:"/>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="pnImagem">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                    </Container>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JButton" name="btSalvar">
