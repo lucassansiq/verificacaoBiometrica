@@ -6,12 +6,15 @@
 package view;
 
 import Reconhecimento.Captura;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.Normalizer.Form;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -31,6 +34,11 @@ import org.bytedeco.javacv.FrameGrabber;
 public class Menu extends javax.swing.JFrame {
     
     JLabel lb = new JLabel();
+    
+    //private final JFileChooser openFileChooser;
+    private BufferedImage originalBI;
+    private BufferedImage newBI;
+    private int[][] pixels;
 
     /**
      * Creates new form Cadastro
@@ -664,21 +672,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
         
-        JFileChooser fc = new JFileChooser();
-        fc.setDialogTitle("Procurar arquivo");
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
-        
-        fc.setFileFilter(filter);
-        if(fc.showOpenDialog(jPanel2) == JFileChooser.APPROVE_OPTION){
-
-            File f = fc.getSelectedFile();
-            tfArquivo.setText(f.getPath());  
-            lb.setIcon(new ImageIcon(f.getPath()));
-            lb.setHorizontalAlignment(lb.CENTER);
-            pnImagem.getViewport().add(lb);
-            
+        try {
+            capturaImagem();
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }//GEN-LAST:event_btProcurarActionPerformed
@@ -902,6 +899,74 @@ public class Menu extends javax.swing.JFrame {
         
         return res;
     }
+    
+    public void capturaImagem() throws IOException{
+        
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Procurar arquivo");
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
+        fc.setFileFilter(filter);
+        
+        int returnValue = fc.showOpenDialog(this);
+        
+        if(returnValue == JFileChooser.APPROVE_OPTION){
+            
+            try{
+                originalBI = ImageIO.read(fc.getSelectedFile());
+                File f = fc.getSelectedFile();
+                tfArquivo.setText(f.getPath());
+                lb.setIcon(new ImageIcon(f.getPath()));
+                lb.setHorizontalAlignment(lb.CENTER);
+                pnImagem.getViewport().add(lb);
+            }catch(IOException ioe){
+                tfArquivo.setText("Imagem invalida");
+            }
+        }else{
+            tfArquivo.setText("Insira a imagem!");
+        }
+        
+    }
+    
+//Usar para salvar no banco
+    private void imageToArray(){
+        int width = originalBI.getWidth();
+        int height = originalBI.getHeight();
+        
+        newBI = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
+        
+        pixels = new int[width][height];
+        
+        for(int i = 0;i < width; i++){
+            for(int j = 0; j < height; j++){
+                pixels[i][j] = originalBI.getRGB(i, j);
+            }
+        }
+    }
+    
+//Caso precise salvar em algum lugar    
+//    private void saveImage(){
+//        JFileChooser sv = new JFileChooser();
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
+//        sv.setFileFilter(filter);
+//        sv.setCurrentDirectory(new File(tfArquivo.getText()));
+//        
+//        int returnValue = sv.showSaveDialog(this);
+//        
+//        if(returnValue == JFileChooser.APPROVE_OPTION){
+//            
+//            try{
+//                ImageIO.write(newBI, "png",sv.getSelectedFile());
+//                File f = sv.getSelectedFile();
+//                tfArquivo.setText("Imagem Salva!!");
+//            }catch(IOException ioe){
+//                tfArquivo.setText("Imagem invalida");
+//            }
+//        }else{
+//            tfArquivo.setText("Insira a imagem!");
+//        }
+//    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
