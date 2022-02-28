@@ -7,10 +7,12 @@ package view;
 
 import Reconhecimento.Reconhecimento;
 import dao.formLogin;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -49,6 +51,10 @@ public class Login extends javax.swing.JFrame {
         
         tfArquivo.setEditable(false);
     }
+    
+    private BufferedImage originalBI;
+    private BufferedImage newBI;
+    private int[][] pixels;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,48 +234,18 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Acesso Negado");
         }
         
-//--------------------------> Para printar no documento        
-//        formLogin novo = new formLogin();
-//        String valor = new String(tfSenha.getPassword());
-//        String usuario = new String(tfUsuario.getText());
-//        boolean resposta = novo.consultar(usuario, valor);
-//        if (resposta == true) {
-//            try {
-//                String avaliar == Reconhecimento.Executar();
-//            } catch (FrameGrabber.Exception ex) {
-//                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            if(avaliar == "Desconhecido"){
-//                JOptionPane.showMessageDialog(this, "Pessoa Desconhecida");
-//            }
-//            else{
-//                String nome = novo.nomeUsuario(usuario, valor);
-//                int nivel = novo.nivelUsuario(usuario, valor);
-//                new Menu(nome,nivel).setVisible(true);
-//                this.setVisible(false);
-//                JOptionPane.showMessageDialog(this, "Acesso Confirmado");
-//            }  
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Acesso Negado");
-//        }
+        // Metodo para validação com a foto
+        ///validacao();
         
+
         
     }//GEN-LAST:event_btLogarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        JFileChooser fc = new JFileChooser();
-        fc.setDialogTitle("Procurar arquivo");
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
-        
-        fc.setFileFilter(filter);
-        if(fc.showOpenDialog(jPanel2) == JFileChooser.APPROVE_OPTION){
-
-            File f = fc.getSelectedFile();
-            tfArquivo.setText(f.getPath());  
-            
+        try {
+            capturaImagem();
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -277,6 +253,79 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfArquivoActionPerformed
 
+    public void validacao(){
+        //Cria um objeto da classe formLogin, e usa o metodo consultar
+        //Faz a verificacao se consta no banco 
+        formLogin novo = new formLogin();
+        String valor = new String(tfSenha.getPassword());
+        String usuario = new String(tfUsuario.getText());
+        boolean resposta = novo.consultar(usuario, valor);
+        if (resposta == true) {
+            if(comparaImagem(novo.fotoUsuario(usuario, valor)) == true){
+                String nome = novo.nomeUsuario(usuario, valor);
+                int nivel = novo.nivelUsuario(usuario, valor);
+                new Menu(nome,nivel).setVisible(true);
+                this.setVisible(false);
+                JOptionPane.showMessageDialog(this, "Acesso Confirmado");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Acesso Negado");
+        }
+    }
+    
+    
+    public void capturaImagem() throws IOException{
+        
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Procurar arquivo");
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
+        fc.setFileFilter(filter);
+        
+        int returnValue = fc.showOpenDialog(this);
+        
+        if(returnValue == JFileChooser.APPROVE_OPTION){
+            
+            try{
+                originalBI = ImageIO.read(fc.getSelectedFile());
+                File f = fc.getSelectedFile();
+                tfArquivo.setText(f.getPath());
+            }catch(IOException ioe){
+                tfArquivo.setText("Imagem invalida");
+            }
+        }else{
+            tfArquivo.setText("Insira a imagem!");
+        }
+        
+    }
+    
+    private String imageToArray(){
+        int width = originalBI.getWidth();
+        int height = originalBI.getHeight();
+        
+        newBI = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
+        
+        pixels = new int[width][height];
+        
+        for(int i = 0;i < width; i++){
+            for(int j = 0; j < height; j++){
+                pixels[i][j] = originalBI.getRGB(i, j);
+            }
+        }
+        
+        String image = pixels.toString();
+        
+        return image;
+        
+    }
+    
+    private boolean comparaImagem(String imagem){
+        if (imageToArray() == imagem ){
+            return true;
+        }else return false; 
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

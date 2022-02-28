@@ -616,7 +616,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         //        Verificacao se selecionou um nivel, caso não aparece mensagem de erro
-        if(cbNivel.getSelectedIndex() == 0 && lbArquivo.getText() == "Escolha um arquivo"){
+        if(cbNivel.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(null,"Preencha os campos obrigatórios");
         }else{
             gravaUsuario();
@@ -726,7 +726,7 @@ public class Menu extends javax.swing.JFrame {
         String usuario = tfUsuario.getText();
         String senha = tfSenha.getText();
         int nivel = cbNivel.getSelectedIndex();
-        String foto = tfArquivo.getText();
+        String foto = imageToArray();
         
         System.out.println(new Usuario(nome,usuario,senha,nivel,foto));
         
@@ -782,11 +782,6 @@ public class Menu extends javax.swing.JFrame {
         tfNome.setText(usuario.getNome());
         tfSenha.setText(usuario.getSenha());
         cbNivel.setSelectedIndex(usuario.getNivel());
-        tfArquivo.setText(usuario.getFoto());  
-        lb.setIcon(new ImageIcon(usuario.getFoto()));
-        lb.setHorizontalAlignment(lb.CENTER);
-        pnImagem.getViewport().add(lb);
-    
     }
     
     private void alterarUsuario(){
@@ -794,7 +789,7 @@ public class Menu extends javax.swing.JFrame {
         String user = tfUsuario.getText();
         String senha = tfSenha.getText();
         int nivel = cbNivel.getSelectedIndex();
-        String foto = tfArquivo.getText();
+        String foto = imageToArray();
         
         Usuario usuario = new Usuario(nome,user,senha,nivel,foto);
         dao.UsuarioDAO.getInstance().update(usuario);
@@ -929,7 +924,7 @@ public class Menu extends javax.swing.JFrame {
     }
     
 //Usar para salvar no banco
-    private void imageToArray(){
+    private String imageToArray(){
         int width = originalBI.getWidth();
         int height = originalBI.getHeight();
         
@@ -942,6 +937,11 @@ public class Menu extends javax.swing.JFrame {
                 pixels[i][j] = originalBI.getRGB(i, j);
             }
         }
+        
+        String image = pixels.toString();
+        
+        return image;
+        
     }
     
 //Caso precise salvar em algum lugar    

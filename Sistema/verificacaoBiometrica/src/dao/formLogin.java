@@ -104,6 +104,31 @@ public class formLogin {
         
         return nivel;
     }
+    
+    public String fotoUsuario(String login, String senha){
+        String foto = null;
+        String sql;
+        try {
+            Connection conn = ConnectionFactory.getConnection();
+
+            sql = "SELECT id,nome,usuario,senha,nivel,foto FROM Usuario WHERE usuario=? and senha=?";
+            PreparedStatement ps;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, login);
+            ps.setString(2, senha);
+
+            ResultSet rs;
+            rs = ps.executeQuery();
+
+            foto = rs.getString("foto");
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+        return foto;
+    }
 
     public int getAcesso() {
         return Acesso;
