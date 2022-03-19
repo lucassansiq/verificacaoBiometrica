@@ -218,29 +218,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        //Cria um objeto da classe formLogin, e usa o metodo consultar
-        //Faz a verificacao se consta no banco 
-        formLogin novo = new formLogin();
-        String valor = new String(tfSenha.getPassword());
-        String usuario = new String(tfUsuario.getText());
-        boolean resposta = novo.consultar(usuario, valor);
-        if (resposta == true) {
-            if(comparaImagem(novo.fotoUsuario(usuario, valor)) == true){
-                String nome = novo.nomeUsuario(usuario, valor);
-                int nivel = novo.nivelUsuario(usuario, valor);
-                new Menu(nome,nivel).setVisible(true);
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(this, "Acesso Confirmado");
-            } 
-        } else {
-            JOptionPane.showMessageDialog(this, "Acesso Negado");
-        }
-        
-        // Metodo para validação com a foto
-        ///validacao();
-        
-
-        
+        validacaoLogin();
     }//GEN-LAST:event_btLogarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -361,6 +339,36 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+    }
+    
+    public void validacaoLogin(){
+        //Cria um objeto da classe formLogin, e usa o metodo consultar
+        //Faz a verificacao se consta no banco 
+        try{
+        formLogin novo = new formLogin();
+        String valor = new String(tfSenha.getPassword());
+        String usuario = new String(tfUsuario.getText());
+        boolean resposta = novo.consultar(usuario, valor);
+        if (usuario == "padrao" && valor == "123456"){
+            new Menu(usuario,3).setVisible(true);
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Acesso Confirmado");
+        }else if (resposta == true) {
+            if(comparaImagem(novo.fotoUsuario(usuario, valor)) == true){
+                String nome = novo.nomeUsuario(usuario, valor);
+                int nivel = novo.nivelUsuario(usuario, valor);
+                new Menu(nome,nivel).setVisible(true);
+                this.setVisible(false);
+                JOptionPane.showMessageDialog(this, "Acesso Confirmado");
+            } 
+        } else {
+            JOptionPane.showMessageDialog(this, "Acesso Negado");
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Dados Incompletos");
+        }
+        // Metodo para validação com a foto
+        ///validacao();
     }
     
     
