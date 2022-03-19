@@ -225,11 +225,13 @@ public class Login extends javax.swing.JFrame {
         String usuario = new String(tfUsuario.getText());
         boolean resposta = novo.consultar(usuario, valor);
         if (resposta == true) {
-            String nome = novo.nomeUsuario(usuario, valor);
-            int nivel = novo.nivelUsuario(usuario, valor);
-            new Menu(nome,nivel).setVisible(true);
-            this.setVisible(false);
-            JOptionPane.showMessageDialog(this, "Acesso Confirmado");
+            if(comparaImagem(novo.fotoUsuario(usuario, valor)) == true){
+                String nome = novo.nomeUsuario(usuario, valor);
+                int nivel = novo.nivelUsuario(usuario, valor);
+                new Menu(nome,nivel).setVisible(true);
+                this.setVisible(false);
+                JOptionPane.showMessageDialog(this, "Acesso Confirmado");
+            } 
         } else {
             JOptionPane.showMessageDialog(this, "Acesso Negado");
         }
